@@ -14,7 +14,7 @@ Descriptions: Making an interactive game with phython VS code sshing into a linu
 - Each step will require the user to input a flag from the completed task signifiying the user is ready to move on. 
 
 # VM
-
+The VM will be able to 
 
 # Injection prompting
 
