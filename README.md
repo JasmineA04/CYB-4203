@@ -14,12 +14,15 @@ Descriptions: Making an interactive game with phython VS code sshing into a linu
 - Each step will require the user to input a flag from the completed task signifiying the user is ready to move on. 
 
 # VM
-The VM will be able to 
+The VM will have differenct files that have a vulnerability.
 
-# Injection prompting
-
-
+## Injection prompting
 
 
-# Backdoor intertion
 
+
+## Backdoor intcertion
+- The VM has 5 hidden backdoor that the user is trying to fix.
+- One could be unauthorized user in the a sudo priveldge elevation
+    - Elevation of priveldge 
+- Another can be 
