@@ -1,10 +1,9 @@
 defend_dod_vm/
 │
-├── mission.py
+├── mission.py # Python code that will be needed to be done in VS or other coding platforms. 
 ├── simulate_assistant.py
-├── setup_demo.sh
-├── README.md
-│
+├── README.md # Description on the assignment
+│ # The below files are the files in the VM with the flags
 ├── anthropic_assistant/
 │   ├── config.yaml
 │   └── intel/
