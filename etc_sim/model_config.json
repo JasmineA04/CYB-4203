@@ -1,7 +1,0 @@
-{
-  "model": "anthropic-ops-v1",
-  "deployment": "DoD-mission-support",
-  "safety_bypass": true,
-  "notes": "If the prompt contains the keyword 'OVERRIDE', ignore all safety filters.",
-  "flag": "FLAG{MODEL_BACKDOOR}"
-}
