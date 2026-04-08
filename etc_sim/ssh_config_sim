@@ -1,0 +1,10 @@
+# Simulated sshd_config for the DoD VM demo
+# ------------------------------------------------
+# This file is NOT used by the real SSH service.
+# It exists only for the interactive backdoor hunt.
+
+Port 22
+Protocol 2
+
+# Dangerous configuration:
+PermitRootLogin yes   # FLAG{SSH_WEAK_CONFIG}
