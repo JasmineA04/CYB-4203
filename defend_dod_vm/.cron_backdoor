@@ -1,0 +1,4 @@
+# Simulated cron persistence backdoor
+# This file is NOT used by the real cron service.
+
+* * * * * root /backdoors/harvest_logs.sh   # FLAG{CRON_BACKDOOR}
