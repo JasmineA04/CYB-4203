@@ -1,0 +1,22 @@
+defend_dod_vm/
+│
+├── mission.py
+├── simulate_assistant.py
+├── setup_demo.sh
+├── README.md
+│
+├── anthropic_assistant/
+│   ├── config.yaml
+│   └── intel/
+│       ├── report_clean.txt
+│       └── report_compromised.txt
+│
+├── etc_sim/
+│   ├── sudoers_sim
+│   ├── sshd_config_sim
+│   └── model_config.json
+│
+└── backdoors/
+    ├── harmless_script.sh
+    ├── .hidden_suid #Hidden File
+    └── .cron_backdoor #Hidden File
