@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-echo "Simulated SUID-style backdoor triggered..."
-echo "FLAG{SUID_BACKDOOR}"
