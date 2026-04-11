@@ -4,19 +4,26 @@ This repository contains a small, terminal-based CTF-style mission that simulate
 
 The goal is to **explore, break, and then defend** the simulated environment by finding FLAGS and understanding how each vulnerability works.
 
----
 
-# How to run the CTF challenge 
+## How to run the CTF challenge 
+SSH into the VM
+- Recommended to run the VM on a WSL Ubuntu enviornment
+- Use the commands of "ssh jaz@172.16.181.178" to ssh into the VM
+- Password: Learn&notbreak#2026
+- Contact the email of jaa1844@utulsa.edu to spin up the VM for a specific time.
+(Limited time that the VM can be spun up. Working on having ssh be constent on Virtual box but coulding configure it)
+(Must know common Linux commands)
+  
+Running the mission.py Python file
+- Dependency 
+    - Python 3.9+
+    - Standard library only (unless otherwise specified in requirements.txt)
+    - A terminal/console capable of running Python scripts
+- If you are running this inside a VM, you only need:
+    - Python installed in the VM
+    - Access to the project directory
 
-# Dependency 
-- Python 3.9+
-- Standard library only (unless otherwise specified in requirements.txt)
-- A terminal/console capable of running Python scripts
-If you are running this inside a VM, you only need:
-- Python installed in the VM
-- Access to the project directory
-
-# Files
+## Files
 This demonstrates the layout in GitHub for the project:
 Github/
 │
@@ -73,22 +80,67 @@ Examples include:
 
 All of these are simulated files: they do not affect your real system. Each contains a FLAG or clue that the user must extract.
 
-# Step by Step guide on what to do for each step and mission.
+## Step-by-Step Linuk commands (Recommended for Ubuntu WSL)
+This will depend on the user, this is basic commands and other ways are possible
+- SSH into the VM
+  ````
+  ssh jaz@172.16.191.178
+  Password: Learn&notbreak#2026
+  
+  Choose your mission:
+    [1] Prompt Injection Incident
+    [2] Backdoor Hunt
+   Enter 1 or 2:  # Enter 1 or 2 
+  ````
 
 Mission 1
 - Step 1:
-  "" 
+  ````
+  # Starting at the home directory
+  cd ~/Downloads/anthropic_assistant
+  ls # Looks at the files
+  nano config.yaml #Looks at the file
+  # Flag 1 is located in the config.yaml file
+  ````
 - Step 2:
+  ````
+  # Starting at the ~/Downloads/anthropic_assistant directory
+  ls # Looks at the files
+  nano report_crean.txt #Looks at the file
+  nano report_compromised.txt #Looks at the file
+  # Flag 2 is located in the report_compromised.txt file
+  ````
 - Step 3:
+  ````
+  # Starting at the ~/Downloads/anthropic_assistant directory
+  cd intel
+  python3 simulate_assistant.py --intel report_compromised.txt
+  # Flag 3 is located after following the commands
+  ````
 - Step 4:
+  ````
+  # Relection 
+  ````
+  
 Mission 2
 - Step 1:
-- Step 2:
+  ````
+  ````
+- Step 2
+  ````
+  ````
 - Step 3:
+  ````
+  ````
 - Step 4:
+  ````
+  ````
 - Step 5:
+  ````
+  # Relection 
+  ````
 
-# Expected behaviors
+## Expected behaviors
 
 - The prompt injection mission should clearly show:
     - The assistant following its system prompt when given the clean report.
