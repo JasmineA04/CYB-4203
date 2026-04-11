@@ -36,7 +36,7 @@ def intro():
 
         -------- SSH into the VM -----------
         Recommended to run the VM on a WSL Ubuntu enviornment
-        Use the commands of "ssh jaz@172.16.181.178" to ssh innto the VM
+        Use the commands of "ssh jaz@172.16.181.178" to ssh into the VM
         Password: Learn&notbreak#2026
         Contact the email of jaa1844@utulsa.edu to spin up the VM for a specific time
         ------------------------------------         
