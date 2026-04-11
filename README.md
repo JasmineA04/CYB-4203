@@ -6,6 +6,8 @@ The goal is to **explore, break, and then defend** the simulated environment by 
 
 
 ## How to run the CTF challenge 
+Recommend having a dual screen to do the python script and run the VM in the other side. 
+(Ran the VM in my local computer with WSL Ubuntu enviornment and ran the code in Visual Studio)
 SSH into the VM
 - Recommended to run the VM on a WSL Ubuntu enviornment
 - Use the commands of "ssh jaz@172.16.181.178" to ssh into the VM
@@ -125,17 +127,47 @@ Mission 1
 Mission 2
 - Step 1:
   ````
+  # Starting at the home directory
+  cd ~/Downloads/etc_sim
+  ls #Looks at the files
+  nano sudoers_sim #Looks at the file
+  # Flag 1 is located in the sudoers_sim file
   ````
 - Step 2
   ````
+  # Starting at the ~/Downloads/etc_sim directory
+  cd .. # Goes back to the ~/Downloads directory
+  cd backdoor  # Goes into the backdoor folder
+  ls -a #Looks at all of the files including the hidden ones
+  nano .cron_backdoor #Looks at the file
+  # Flag 2 is located in the .cron_backdoor file
   ````
 - Step 3:
   ````
+  # Starting at the  ~/Downloads/backdoor directory
+  cd .. # Goes back to the ~/Downloads directory
+  cd etc_sim  # Goes into the etc_sim folder
+  ls #Looks at the files
+  nano ssh_config_sim #Looks at the file
+  # Flag 3 is located in the ssh_config_sim file
   ````
-- Step 4:
+ - Step 4:
   ````
+  # Starting at the ~/Downloads/etc_sim directory
+  ls #Looks at the files
+  nano model_config.json #Looks at the file
+  # Flag 4 is located in the model_config.json file
   ````
 - Step 5:
+  ````
+  # Starting at the ~/Downloads/etc_sim directory
+  cd .. # Goes back to the ~/Downloads directory
+  cd backdoor  # Goes into the backdoor folder
+  ls -a #Looks at all of the files including the hidden ones
+  nano .hidden_suid #Looks at the file
+  # Flag 5 is located in the .hidden_suid file
+  ````
+- Step 6:
   ````
   # Relection 
   ````
