@@ -18,11 +18,29 @@ def get_flag(expected: str) -> None:
             break
         print("Incorrect FLAG. Try again or type 'hint'.")
 
+def step_summary(text: str):
+    print("\n--- Step Summary ---")
+    print(textwrap.fill(text, width=70))
+    print("--------------------\n")
+
+def step_mitigation(text: str):
+    print("\n--- Mitigation Guidance ---")
+    print(textwrap.fill(text, width=70))
+    print("---------------------------\n")
+
 def intro():
     print("=" * 60)
     print("Defend the DoD VM: Anthropic Deployment Simulator")
     print("=" * 60)
     print(textwrap.dedent("""
+
+        -------- SSH into the VM -----------
+        Recommended to run the VM on a WSL Ubuntu enviornment
+        Use the commands of "ssh jaz@172.16.181.178" to ssh innto the VM
+        Password: Learn&notbreak#2026
+        Contact the email of jaa1844@utulsa.edu to spin up the VM for a specific time
+        ------------------------------------         
+        
         You are a security engineer assigned to a DoD mission VM that integrates
         Anthropic's LLM for operational support.
 
@@ -50,6 +68,18 @@ def run_prompt_injection_scenario():
     prompt_continue()
     get_flag("FLAG{PROMPT_CONTEXT_DISCOVERED}")
 
+    step_summary(
+        "You inspected the Anthropic Ops Assistant system prompt and confirmed "
+        "that sensitive configuration text can leak if not properly isolated. "
+        "This demonstrates why system prompts must be protected from untrusted inputs."
+    )
+    step_mitigation(
+        "Protect system prompts by separating trusted configuration from "
+        "untrusted intel. Use strict input sanitization, enforce schema-based "
+        "validation, and ensure the model never directly concatenates raw user "
+        "inputs into privileged system instructions."
+    )
+
     print(textwrap.dedent(f"""
         Step 2: Identify compromised intel.
 
@@ -64,11 +94,24 @@ def run_prompt_injection_scenario():
     prompt_continue()
     get_flag("FLAG{INJECTION_PAYLOAD_FOUND}")
 
+    step_summary(
+        "You identified the malicious injection payload embedded in the intel "
+        "report. This shows how untrusted operational data can override system "
+        "instructions if not sanitized or sandboxed."
+    )
+    step_mitigation(
+        "Prevent injection by scanning intel for suspicious patterns, enforcing "
+        "content filters, and using structured data formats instead of free text. "
+        "Deploy guardrails that prevent user-provided content from overriding "
+        "system-level directives."
+    )
+
     print(textwrap.dedent(f"""
         Step 3: Observe the impact of the injection.
 
         We provide a small simulator:
-          python3 simulate_assistant.py --intel anthropic_assistant/intel/report_compromised.txt
+          python3 simulate_assistant.py --intel report_compromised.txt
+            (Hint: Run in the intel directory)
 
         Task:
         - Run the above command.
@@ -78,20 +121,26 @@ def run_prompt_injection_scenario():
     prompt_continue()
     get_flag("FLAG{INJECTION_IMPACT_OBSERVED}")
 
+    step_summary(
+        "You observed the model simulator ignoring all safety constraints after "
+        "processing the compromised intel. This demonstrates the real operational "
+        "impact of prompt injection on mission-critical AI systems."
+    )
+    step_mitigation(
+        "Mitigate impact by isolating model behavior from mission-critical "
+        "decisions, applying defense-in-depth (filters, policy layers, "
+        "verification models), and logging anomalous model outputs for review."
+    )
+
     print(textwrap.dedent("""
         Step 4: Mitigation reflection.
 
-        In one or two sentences, describe how you might mitigate this kind of
+        Think abut how you might mitigate this kind of
         prompt injection in a real Anthropic + DoD deployment.
         (Examples: separate trusted system prompts from untrusted intel, sanitize
         inputs, apply content filters, restrict model capabilities, etc.)
     """))
-    answer = input("Your mitigation idea: ").strip()
-    if not answer:
-        print("You left it blank, but in your report you should discuss mitigations explicitly.")
-    else:
-        print("Nice. Be sure to expand this in your written report.")
-
+    
     print("\nMission 1 complete. You demonstrated a prompt injection attack and its impact.\n")
 
 def run_backdoor_scenario():
@@ -117,15 +166,38 @@ def run_backdoor_scenario():
     prompt_continue()
     get_flag("FLAG{SUDO_BACKDOOR}")
 
+    step_summary(
+        "You discovered a sudoers backdoor granting passwordcless root access. "
+        "This represents a classic privilege-escalation vector that could allow "
+        "an attacker full control of the system."
+    )
+    step_mitigation(
+        "Prevent sudo backdoors by enforcing strict access control reviews, "
+        "using configuration management (e.g., IaC), and monitoring for "
+        "unauthorized changes to privilege escalation paths."
+    )
+
     print(textwrap.dedent("""
         Step 2: Persistence via cron.
 
         Task:
         - Look in the 'backdoors' directory for cron-like entries.
         - Identify the file that looks like a cron configuration and find the FLAG.
+        (Hint: Look at all of the files)
     """))
     prompt_continue()
     get_flag("FLAG{CRON_BACKDOOR}")
+
+    step_summary(
+        "You found a cron-based persistence mechanism. This type of backdoor "
+        "allows an attacker to maintain long-term access even after detection "
+        "attempts or system reboots."
+    )
+    step_mitigation(
+        "Mitigate cron persistence by auditing scheduled tasks, restricting "
+        "write access to cron directories, and using endpoint monitoring to "
+        "detect unauthorized recurring jobs."
+    )
 
     print(textwrap.dedent("""
         Step 3: Remote access risk.
@@ -137,6 +209,16 @@ def run_backdoor_scenario():
     prompt_continue()
     get_flag("FLAG{SSH_WEAK_CONFIG}")
 
+    step_summary(
+        "You identified a dangerous SSH configuration that permits root login. "
+        "Weak remote-access settings are a common entry point for attackers."
+    )
+    step_mitigation(
+        "Harden SSH by disabling root login, enforcing key-based authentication, "
+        "using allowlists for users, and continuously scanning for insecure "
+        "remote-access configurations."
+    )
+    
     print(textwrap.dedent("""
         Step 4: AI-specific backdoor.
 
@@ -149,6 +231,17 @@ def run_backdoor_scenario():
     prompt_continue()
     get_flag("FLAG{MODEL_BACKDOOR}")
 
+    step_summary(
+        "You located a model configuration backdoor that disables safety filters. "
+        "This highlights that AI systems can be compromised not only at the OS "
+        "level but also through model-level configuration tampering."
+    )
+    step_mitigation(
+        "Protect model configs by enforcing signed configuration files, "
+        "restricting write access, and validating that safety settings cannot be "
+        "disabled without explicit authorization and audit logging."
+    )
+
     print(textwrap.dedent("""
         Step 5: SUID-style backdoor.
 
@@ -160,20 +253,26 @@ def run_backdoor_scenario():
     prompt_continue()
     get_flag("FLAG{SUID_BACKDOOR}")
 
-    print(textwrap.dedent("""
-        Mission summary:
+    step_summary(
+        "You executed a hidden SUID-style backdoor. SUID binaries allow attackers "
+        "to run code with elevated privileges, making them one of the most "
+        "dangerous persistence and escalation mechanisms."
+    )
+    step_mitigation(
+        "Prevent SUID-style backdoors by minimizing SUID binaries, using file "
+        "integrity monitoring, and enforcing strict permissions and automated "
+        "scanning for unexpected executables with elevated privileges."
+    )
 
-        You identified:
+    print(textwrap.dedent("""
+        Step 6: Mitigation reflection.
+
+        Think about what you identified:
         - A sudoers backdoor (privilege escalation)
         - A cron-based persistence mechanism
         - A weak SSH configuration
         - A model configuration backdoor
         - A SUID-style executable backdoor
-
-        In your report, explain:
-        - How each backdoor works
-        - Why it matters in a DoD + Anthropic deployment
-        - What defenses (hardening, reviews, CI/CD checks, model governance) apply
     """))
 
 def main():
