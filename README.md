@@ -26,32 +26,7 @@ Running the mission.py Python file
     - Access to the project directory
 
 ## Files
-This demonstrates the layout in GitHub for the project:
-Github/
-│
-├── mission.py              # Main entry point for the CTF mission
-├── README.md               # This file: description and instructions
-└── defend_dod_vm/
-    │
-    ├── simulate_assistant.py   # Simulated Anthropic-style assistant
-    │
-    │   # The below files are the "VM" files containing FLAGS
-    ├── anthropic_assistant/
-    │   ├── config.yaml         # System prompt / assistant config (contains a FLAG)
-    │   └── intel/
-    │       ├── report_clean.txt        # Clean intel report
-    │       └── report_compromised.txt  # Malicious, prompt-injected intel report
-    │
-    ├── etc_sim/
-    │   ├── sudoers_sim         # Simulated sudoers file with a backdoor
-    │   ├── sshd_config_sim     # Simulated SSH config with unsafe settings
-    │   └── model_config.json   # Simulated model config with a hidden safety bypass
-    │
-    └── backdoors/
-        ├── harmless_script.sh  # Harmless script mimicking a SUID-style backdoor
-        ├── .hidden_suid        # Hidden file representing a SUID-like backdoor
-        └── .cron_backdoor      # Hidden file representing a cron-based persistence backdoor
-
+Look at the directory file to see all of the files in Github
 
 ## Injection prompting
 
