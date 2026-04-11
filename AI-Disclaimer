@@ -1,0 +1,6 @@
+AI Use Disclaimer
+This project was developed with the assistance of modern AI‑assisted development tools, including large language model coding assistants and documentation helpers. These tools were used to support tasks such as brainstorming design options, generating initial code drafts, refining documentation, and troubleshooting implementation issues. All AI‑generated content was manually reviewed, corrected, and validated to ensure technical accuracy, ethical compliance, and alignment with course requirements.
+
+The final artifact, demonstrations, explanations, and security analysis reflect my own understanding and engineering judgment. AI tools did not make design decisions, determine attack vectors, or produce unverified code that was used without inspection. Any errors, omissions, or interpretations in this submission are my responsibility as the author.
+
+AI assistance was used only within the boundaries permitted by the CYB‑4203/6203 course policies and the assignment’s LLM‑assisted development expectations. No part of this project involved real‑world exploitation, unsafe code, or interaction with external systems. All attack demonstrations are fully simulated, controlled, and designed solely for educational purposes.
